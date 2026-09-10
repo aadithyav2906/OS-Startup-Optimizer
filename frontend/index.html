@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Startup Application Optimizer</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         APPLICATION
+    ====================================================== -->
+
+    <div class="app">
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    ⚡
+                </div>
+
+                <div>
+                    <h1>Startup</h1>
+                    <span>Optimizer</span>
+                </div>
+
+            </div>
+
+
+            <nav class="navigation">
+
+                <button
+                    class="nav-item active"
+                    data-page="dashboard"
+                >
+                    <span class="nav-icon">▦</span>
+                    <span>Dashboard</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="startup"
+                >
+                    <span class="nav-icon">🚀</span>
+                    <span>Startup Apps</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="analytics"
+                >
+                    <span class="nav-icon">◔</span>
+                    <span>Analytics</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="optimizer"
+                >
+                    <span class="nav-icon">⚡</span>
+                    <span>Optimizer</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="reports"
+                >
+                    <span class="nav-icon">▤</span>
+                    <span>Reports</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="about"
+                >
+                    <span class="nav-icon">ⓘ</span>
+                    <span>About</span>
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="connection-card">
+
+                    <span
+                        class="connection-dot"
+                        id="connectionDot"
+                    ></span>
+
+                    <div>
+                        <strong id="connectionText">
+                            Connecting...
+                        </strong>
+
+                        <small>
+                            Flask Backend
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="version">
+                    v1.0.0
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="main-content">
+
+            <!-- HEADER -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <p class="breadcrumb">
+                        System Utility
+                    </p>
+
+                    <h2 id="pageTitle">
+                        System Dashboard
+                    </h2>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <div class="last-scan">
+
+                        <span>
+                            Last scan
+                        </span>
+
+                        <strong id="lastScan">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="refresh-button"
+                        id="refreshButton"
+                        title="Refresh system data"
+                    >
+                        ↻
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 DASHBOARD PAGE
+            ================================================== -->
+
+            <section
+                class="page active"
+                id="dashboard"
+            >
+
+                <div class="welcome-section">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            SYSTEM OVERVIEW
+                        </p>
+
+                        <h3>
+                            Monitor your startup
+                            performance
+                        </h3>
+
+                        <p class="muted">
+                            Analyze startup applications,
+                            CPU usage, memory consumption
+                            and running processes.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        id="scanButton"
+                    >
+                        <span>⌕</span>
+                        Analyze System
+                    </button>
+
+                </div>
+
+
+                <!-- STAT CARDS -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <span class="stat-label">
+                                CPU Usage
+                            </span>
+
+                            <span class="stat-icon cpu">
+                                ◉
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="stat-value"
+                            id="cpuValue"
+                        >
+                            —
+                        </div>
+
+                        <div class="progress">
+                            <div
+                                class="progress-bar"
+                                id="cpuBar"
+                            ></div>
+                        </div>
+
+                        <span
+                            class="stat-status"
+                            id="cpuStatus"
+                        >
+                            Waiting
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <span class="stat-label">
+                                Memory Usage
+                            </span>
+
+                            <span class="stat-icon memory">
+                                ▰
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="stat-value"
+                            id="memoryValue"
+                        >
+                            —
+                        </div>
+
+                        <div class="progress">
+                            <div
+                                class="progress-bar"
+                                id="memoryBar"
+                            ></div>
+                        </div>
+
+                        <span
+                            class="stat-status"
+                            id="memoryStatus"
+                        >
+                            Waiting
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <span class="stat-label">
+                                Startup Apps
+                            </span>
+
+                            <span class="stat-icon startup">
+                                🚀
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="stat-value"
+                            id="startupValue"
+                        >
+                            —
+                        </div>
+
+                        <span class="stat-description">
+                            Detected applications
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <span class="stat-label">
+                                Processes
+                            </span>
+
+                            <span class="stat-icon process">
+                                ◌
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="stat-value"
+                            id="processValue"
+                        >
+                            —
+                        </div>
+
+                        <span class="stat-description">
+                            Currently running
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DASHBOARD GRID -->
+
+                <div class="dashboard-grid">
+
+                    <!-- SYSTEM HEALTH -->
+
+                    <div class="panel health-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <p class="eyebrow">
+                                    SYSTEM STATUS
+                                </p>
+
+                                <h3>
+                                    System Health
+                                </h3>
+                            </div>
+
+                            <span
+                                class="status-badge"
+                                id="healthBadge"
+                            >
+                                Waiting
+                            </span>
+
+                        </div>
+
+
+                        <div class="health-content">
+
+                            <div class="health-score">
+
+                                <div
+                                    class="score-circle"
+                                    id="healthCircle"
+                                >
+
+                                    <strong id="healthScore">
+                                        —
+                                    </strong>
+
+                                    <span>
+                                        /100
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="health-details">
+
+                                <div class="health-row">
+
+                                    <span>
+                                        CPU
+                                    </span>
+
+                                    <strong
+                                        id="healthCpu"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="health-row">
+
+                                    <span>
+                                        Memory
+                                    </span>
+
+                                    <strong
+                                        id="healthMemory"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="health-row">
+
+                                    <span>
+                                        Startup Apps
+                                    </span>
+
+                                    <strong
+                                        id="healthStartup"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="health-row">
+
+                                    <span>
+                                        Processes
+                                    </span>
+
+                                    <strong
+                                        id="healthProcesses"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- QUICK ACTIONS -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <p class="eyebrow">
+                                    QUICK ACTIONS
+                                </p>
+
+                                <h3>
+                                    Optimization
+                                </h3>
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-actions">
+
+                            <button
+                                class="action-card"
+                                data-page="startup"
+                            >
+
+                                <span class="action-icon">
+                                    🚀
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Startup Apps
+                                    </strong>
+
+                                    <small>
+                                        Manage startup entries
+                                    </small>
+                                </div>
+
+                                <span>
+                                    →
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                class="action-card"
+                                data-page="optimizer"
+                            >
+
+                                <span class="action-icon">
+                                    ⚡
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Optimize
+                                    </strong>
+
+                                    <small>
+                                        Find high-impact apps
+                                    </small>
+                                </div>
+
+                                <span>
+                                    →
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                class="action-card"
+                                data-page="analytics"
+                            >
+
+                                <span class="action-icon">
+                                    ◔
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Analytics
+                                    </strong>
+
+                                    <small>
+                                        View resource usage
+                                    </small>
+                                </div>
+
+                                <span>
+                                    →
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESOURCE OVERVIEW -->
+
+                <div class="panel chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                LIVE MONITORING
+                            </p>
+
+                            <h3>
+                                Resource Overview
+                            </h3>
+
+                        </div>
+
+                        <span class="live-indicator">
+                            <span></span>
+                            Live
+                        </span>
+
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas
+                            id="resourceChart"
+                        ></canvas>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 STARTUP PAGE
+            ================================================== -->
+
+            <section
+                class="page"
+                id="startup"
+            >
+
+                <div class="page-intro">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            STARTUP MANAGEMENT
+                        </p>
+
+                        <h3>
+                            Startup Applications
+                        </h3>
+
+                        <p class="muted">
+                            Review applications configured
+                            to launch with Windows.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="secondary-button"
+                        id="startupRefreshButton"
+                    >
+                        ↻ Refresh
+                    </button>
+
+                </div>
+
+
+                <!-- STARTUP SUMMARY -->
+
+                <div class="mini-stats">
+
+                    <div class="mini-stat">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong id="totalStartup">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="mini-stat danger">
+
+                        <span>
+                            High Impact
+                        </span>
+
+                        <strong id="highStartup">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="mini-stat warning">
+
+                        <span>
+                            Medium Impact
+                        </span>
+
+                        <strong id="mediumStartup">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="mini-stat success">
+
+                        <span>
+                            Low Impact
+                        </span>
+
+                        <strong id="lowStartup">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="mini-stat neutral">
+
+                        <span>
+                            Not Running
+                        </span>
+
+                        <strong id="notRunningStartup">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTROLS -->
+
+                <div class="table-controls">
+
+                    <div class="search-box">
+
+                        <span>
+                            ⌕
+                        </span>
+
+                        <input
+                            type="text"
+                            id="startupSearch"
+                            placeholder="Search applications..."
+                        >
+
+                    </div>
+
+
+                    <select
+                        id="impactFilter"
+                        class="select-control"
+                    >
+
+                        <option value="all">
+                            All Impact
+                        </option>
+
+                        <option value="High">
+                            High Impact
+                        </option>
+
+                        <option value="Medium">
+                            Medium Impact
+                        </option>
+
+                        <option value="Low">
+                            Low Impact
+                        </option>
+
+                        <option value="Not Running">
+                            Not Running
+                        </option>
+
+                    </select>
+
+
+                    <select
+                        id="sortSelect"
+                        class="select-control"
+                    >
+
+                        <option value="impact">
+                            Sort by Impact
+                        </option>
+
+                        <option value="name">
+                            Sort by Name
+                        </option>
+
+                        <option value="cpu">
+                            Sort by CPU
+                        </option>
+
+                        <option value="memory">
+                            Sort by Memory
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- STARTUP TABLE -->
+
+                <div class="panel table-panel">
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        APPLICATION
+                                    </th>
+
+                                    <th>
+                                        SOURCE
+                                    </th>
+
+                                    <th>
+                                        STATUS
+                                    </th>
+
+                                    <th>
+                                        RUNNING
+                                    </th>
+
+                                    <th>
+                                        CPU
+                                    </th>
+
+                                    <th>
+                                        MEMORY
+                                    </th>
+
+                                    <th>
+                                        IMPACT
+                                    </th>
+
+                                    <th>
+                                        ACTION
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody
+                                id="startupTableBody"
+                            >
+
+                                <tr>
+
+                                    <td
+                                        colspan="8"
+                                        class="loading-cell"
+                                    >
+                                        Loading startup
+                                        applications...
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ANALYTICS PAGE
+            ================================================== -->
+
+            <section
+                class="page"
+                id="analytics"
+            >
+
+                <div class="page-intro">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            RESOURCE ANALYSIS
+                        </p>
+
+                        <h3>
+                            System Analytics
+                        </h3>
+
+                        <p class="muted">
+                            Monitor CPU, memory and process
+                            resource consumption.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="analytics-grid">
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <p class="eyebrow">
+                                    CPU
+                                </p>
+
+                                <h3>
+                                    CPU Utilization
+                                </h3>
+                            </div>
+
+                            <strong
+                                class="chart-value"
+                                id="analyticsCpu"
+                            >
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div class="chart-container small">
+                            <canvas
+                                id="cpuChart"
+                            ></canvas>
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <p class="eyebrow">
+                                    MEMORY
+                                </p>
+
+                                <h3>
+                                    Memory Utilization
+                                </h3>
+                            </div>
+
+                            <strong
+                                class="chart-value"
+                                id="analyticsMemory"
+                            >
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div class="chart-container small">
+                            <canvas
+                                id="memoryChart"
+                            ></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOP PROCESSES -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                PROCESS MANAGEMENT
+                            </p>
+
+                            <h3>
+                                Top Resource Consumers
+                            </h3>
+
+                        </div>
+
+                        <button
+                            class="secondary-button"
+                            id="processRefreshButton"
+                        >
+                            ↻ Refresh
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="process-list"
+                        id="processList"
+                    >
+
+                        <div class="empty-state">
+                            Loading processes...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 OPTIMIZER PAGE
+            ================================================== -->
+
+            <section
+                class="page"
+                id="optimizer"
+            >
+
+                <div class="page-intro">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            OPTIMIZATION ENGINE
+                        </p>
+
+                        <h3>
+                            Startup Optimizer
+                        </h3>
+
+                        <p class="muted">
+                            Identify startup applications
+                            with meaningful resource impact.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        id="optimizationScanButton"
+                    >
+                        ⚡ Scan for Optimization
+                    </button>
+
+                </div>
+
+
+                <!-- OPTIMIZATION SCORE -->
+
+                <div class="optimizer-hero panel">
+
+                    <div class="optimizer-score">
+
+                        <div
+                            class="large-score-circle"
+                            id="optimizationCircle"
+                        >
+
+                            <strong
+                                id="optimizationScore"
+                            >
+                                —
+                            </strong>
+
+                            <span>
+                                /100
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="optimizer-summary">
+
+                        <p class="eyebrow">
+                            OPTIMIZATION SCORE
+                        </p>
+
+                        <h3
+                            id="optimizationTitle"
+                        >
+                            Run a system scan
+                        </h3>
+
+                        <p
+                            class="muted"
+                            id="optimizationDescription"
+                        >
+                            Scan your startup applications
+                            to identify potential optimization
+                            opportunities.
+                        </p>
+
+                        <div
+                            class="optimization-counts"
+                        >
+
+                            <span>
+                                High:
+                                <strong
+                                    id="optimizerHigh"
+                                >
+                                    0
+                                </strong>
+                            </span>
+
+                            <span>
+                                Medium:
+                                <strong
+                                    id="optimizerMedium"
+                                >
+                                    0
+                                </strong>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECOMMENDATIONS -->
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            RECOMMENDATIONS
+                        </p>
+
+                        <h3>
+                            Suggested Actions
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="recommendation-grid"
+                    id="recommendationGrid"
+                >
+
+                    <div class="empty-state panel">
+                        Run an optimization scan to
+                        see recommendations.
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 REPORTS PAGE
+            ================================================== -->
+
+            <section
+                class="page"
+                id="reports"
+            >
+
+                <div class="page-intro">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            SYSTEM REPORT
+                        </p>
+
+                        <h3>
+                            Optimization Report
+                        </h3>
+
+                        <p class="muted">
+                            Generate a summary of your
+                            current startup configuration.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        id="printReportButton"
+                    >
+                        🖨 Print Report
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="report"
+                    id="reportContent"
+                >
+
+                    <div class="report-header">
+
+                        <div>
+
+                            <div class="report-logo">
+                                ⚡
+                            </div>
+
+                            <h2>
+                                Startup Application
+                                Optimizer
+                            </h2>
+
+                            <p>
+                                System Optimization Report
+                            </p>
+
+                        </div>
+
+                        <div class="report-date">
+                            <span>
+                                Generated
+                            </span>
+
+                            <strong
+                                id="reportDate"
+                            >
+                                —
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-section">
+
+                        <h4>
+                            System Overview
+                        </h4>
+
+                        <div class="report-grid">
+
+                            <div>
+                                <span>
+                                    CPU Usage
+                                </span>
+
+                                <strong
+                                    id="reportCpu"
+                                >
+                                    —
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span>
+                                    Memory Usage
+                                </span>
+
+                                <strong
+                                    id="reportMemory"
+                                >
+                                    —
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span>
+                                    Processes
+                                </span>
+
+                                <strong
+                                    id="reportProcesses"
+                                >
+                                    —
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span>
+                                    Startup Apps
+                                </span>
+
+                                <strong
+                                    id="reportStartup"
+                                >
+                                    —
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-section">
+
+                        <h4>
+                            Startup Analysis
+                        </h4>
+
+                        <div class="report-grid">
+
+                            <div>
+                                <span>
+                                    High Impact
+                                </span>
+
+                                <strong
+                                    id="reportHigh"
+                                >
+                                    —
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span>
+                                    Medium Impact
+                                </span>
+
+                                <strong
+                                    id="reportMedium"
+                                >
+                                    —
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span>
+                                    Low Impact
+                                </span>
+
+                                <strong
+                                    id="reportLow"
+                                >
+                                    —
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span>
+                                    Not Running
+                                </span>
+
+                                <strong
+                                    id="reportNotRunning"
+                                >
+                                    —
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-section">
+
+                        <h4>
+                            Recommendations
+                        </h4>
+
+                        <div
+                            id="reportRecommendations"
+                            class="report-recommendations"
+                        >
+                            <p>
+                                Run an optimization scan
+                                to generate recommendations.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-footer">
+
+                        <span>
+                            Startup Application Optimizer
+                        </span>
+
+                        <span>
+                            OS DA2 Project
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ABOUT PAGE
+            ================================================== -->
+
+            <section
+                class="page"
+                id="about"
+            >
+
+                <div class="page-intro">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            PROJECT INFORMATION
+                        </p>
+
+                        <h3>
+                            About the Project
+                        </h3>
+
+                        <p class="muted">
+                            An operating-system-based startup
+                            application analysis and optimization
+                            tool.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="panel about-hero">
+
+                        <div class="about-logo">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            Startup Application
+                            Optimizer
+                        </h3>
+
+                        <p>
+                            This project analyzes applications
+                            configured to start automatically
+                            with Windows and evaluates their
+                            current resource consumption.
+                        </p>
+
+                        <div class="tech-stack">
+
+                            <span>
+                                HTML
+                            </span>
+
+                            <span>
+                                CSS
+                            </span>
+
+                            <span>
+                                JavaScript
+                            </span>
+
+                            <span>
+                                Python
+                            </span>
+
+                            <span>
+                                Flask
+                            </span>
+
+                            <span>
+                                psutil
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <p class="eyebrow">
+                            OPERATING SYSTEM CONCEPTS
+                        </p>
+
+                        <h3>
+                            Concepts Demonstrated
+                        </h3>
+
+
+                        <div class="concept">
+
+                            <div class="concept-icon">
+                                ⚙
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Process Management
+                                </strong>
+
+                                <p>
+                                    Monitors currently running
+                                    processes and their resource
+                                    consumption.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="concept">
+
+                            <div class="concept-icon">
+                                ◉
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    CPU Management
+                                </strong>
+
+                                <p>
+                                    Measures CPU utilization
+                                    to identify resource-intensive
+                                    applications.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="concept">
+
+                            <div class="concept-icon">
+                                ▰
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Memory Management
+                                </strong>
+
+                                <p>
+                                    Measures RAM consumption of
+                                    running applications.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="concept">
+
+                            <div class="concept-icon">
+                                🚀
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Startup Management
+                                </strong>
+
+                                <p>
+                                    Reads Windows startup
+                                    configuration from the
+                                    Registry and Startup Folder.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="concept">
+
+                            <div class="concept-icon">
+                                ⚡
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Resource Optimization
+                                </strong>
+
+                                <p>
+                                    Calculates an impact score
+                                    and generates recommendations.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONFIRMATION MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalOverlay"
+    >
+
+        <div class="modal">
+
+            <button
+                class="modal-close"
+                id="modalClose"
+            >
+                ×
+            </button>
+
+            <div class="modal-icon">
+                ⚠
+            </div>
+
+            <h3 id="modalTitle">
+                Disable Startup?
+            </h3>
+
+            <p id="modalMessage">
+                This will prevent the application
+                from launching automatically with Windows.
+            </p>
+
+            <div class="modal-actions">
+
+                <button
+                    class="secondary-button"
+                    id="modalCancel"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="danger-button"
+                    id="modalConfirm"
+                >
+                    Disable Startup
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+    >
+
+        <span id="toastIcon">
+            ✓
+        </span>
+
+        <div>
+            <strong id="toastTitle">
+                Success
+            </strong>
+
+            <p id="toastMessage">
+                Operation completed.
+            </p>
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
